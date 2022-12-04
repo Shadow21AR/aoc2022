@@ -7,12 +7,7 @@ import (
 	"strings"
 )
 
-func Day2() {
-	data, err := os.Open("day2/inputDay2.txt")
-	if err != nil {
-		panic(err)
-	}
-	defer data.Close()
+func Day2(data *os.File) {
 	scanner := bufio.NewScanner(data)
 	scanner.Split(bufio.ScanLines)
 	var lines []string
@@ -79,3 +74,6 @@ func win(elfMove string) string {
 	}
 	return ""
 }
+
+// Answer2_1:  9651
+// Answer2_2:  10560

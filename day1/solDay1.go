@@ -8,12 +8,7 @@ import (
 	"strconv"
 )
 
-func Day1() {
-	data, err := os.Open("day1/inputDay1.txt")
-	if err != nil {
-		panic(err)
-	}
-	defer data.Close()
+func Day1(data *os.File) {
 	scanner := bufio.NewScanner(data)
 	scanner.Split(bufio.ScanLines)
 	var lines []string
@@ -35,3 +30,6 @@ func Day1() {
 	fmt.Println("Answer1 = ", cal[len(cal)-1])
 	fmt.Println("Answer2 = ", (cal[len(cal)-1] + cal[len(cal)-2] + cal[len(cal)-3]))
 }
+
+// Answer1 =  68775
+// Answer2 =  202585

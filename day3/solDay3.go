@@ -9,12 +9,7 @@ import (
 	"strings"
 )
 
-func Day3() {
-	data, err := os.Open("day3/inputDay3.txt")
-	if err != nil {
-		panic(err)
-	}
-	defer data.Close()
+func Day3(data *os.File) {
 	scanner := bufio.NewScanner(data)
 	scanner.Split(bufio.ScanLines)
 	var lines []string
@@ -36,6 +31,7 @@ func Day3() {
 		}
 	}
 	fmt.Println("Priority is :", priority(chars))
+	Day3_2()
 }
 func priority(chars []int) int {
 	var priority int
@@ -93,3 +89,6 @@ func Day3_2() {
 	}
 	fmt.Println("Answer3_2 :", priority(chars))
 }
+
+// Priority is : 7811
+// Answer3_2 : 2639
