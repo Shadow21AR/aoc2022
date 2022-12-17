@@ -226,38 +226,38 @@ func simulate2(caveMap *map[Pos]Tile, curPos Tile, keys [][]int) Tile {
 	return curPos
 }
 
-func render(caveMap *map[Pos]Tile, keys [][]int) { //it was fun, not using now xD
-	min, max := getMinMax(keys)
-	out := make([][]string, 0)
-	for i := min[0]; i <= max[0]; i++ {
-		temp := make([]string, 0)
-		for k := min[1]; k <= max[1]; k++ {
-			if (*caveMap)[Pos{i, k}].Rock {
-				temp = append(temp, "X")
-			} else if (*caveMap)[Pos{i, k}].Sand {
-				temp = append(temp, "\u001b[2;33mO\u001b[0m") //run on linux only (or whatever)
-				// temp = append(temp, "\u001b[2;33mO\u001b[0m") //for windows
-			} else {
-				temp = append(temp, " ")
-			}
-		}
-		out = append(out, temp)
-	}
-	out[500-min[0]][0] = "+"
-	outPrint(out)
-}
+// func render(caveMap *map[Pos]Tile, keys [][]int) { //it was fun, not using now xD
+// 	min, max := getMinMax(keys)
+// 	out := make([][]string, 0)
+// 	for i := min[0]; i <= max[0]; i++ {
+// 		temp := make([]string, 0)
+// 		for k := min[1]; k <= max[1]; k++ {
+// 			if (*caveMap)[Pos{i, k}].Rock {
+// 				temp = append(temp, "X")
+// 			} else if (*caveMap)[Pos{i, k}].Sand {
+// 				temp = append(temp, "\u001b[2;33mO\u001b[0m") //run on linux only (or whatever)
+// 				// temp = append(temp, "\u001b[2;33mO\u001b[0m") //for windows
+// 			} else {
+// 				temp = append(temp, " ")
+// 			}
+// 		}
+// 		out = append(out, temp)
+// 	}
+// 	out[500-min[0]][0] = "+"
+// 	outPrint(out)
+// }
 
-func outPrint(out [][]string) {
-	data := ""
-	for i := range out[0] {
-		temp := ""
-		for _, v := range out {
-			temp = temp + v[i]
-		}
-		data = data + temp + "\n"
-	}
-	fmt.Printf("%s", data)
-}
+// func outPrint(out [][]string) {
+// 	data := ""
+// 	for i := range out[0] {
+// 		temp := ""
+// 		for _, v := range out {
+// 			temp = temp + v[i]
+// 		}
+// 		data = data + temp + "\n"
+// 	}
+// 	fmt.Printf("%s", data)
+// }
 
 type Tile struct {
 	X     int
