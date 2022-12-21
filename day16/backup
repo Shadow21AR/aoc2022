@@ -1,0 +1,98 @@
+package day16
+
+import (
+	"fmt"
+	"os"
+	"strconv"
+	"strings"
+)
+
+func Day16() {
+	valves := map[string]Valve{}
+	file, err := os.ReadFile("day16/inputDay16.txt")
+	if err != nil {
+		panic(err)
+	}
+	parseData(string(file), &valves)
+	part1(valves)
+	// for _, v := range valves {
+	// 	fmt.Println(v)
+	// }
+}
+
+func part1(valves map[string]Valve) {
+	// fmt.Println(valves)
+}
+
+func parseData(input string, valves *map[string]Valve) {
+	for _, v := range strings.Split(input, "\r\n") {
+		data := strings.Split(v, " ")
+		valve := Valve{}
+		name := data[1]
+		valve.Name = name
+		valve.FlowRate = toInt(strings.Split(strings.Split(data[4], "=")[1], ";")[0])
+		valve.Tunnels = strings.Split(strings.Join(data[9:], ""), ",")
+		(*valves)[name] = valve
+	}
+	newList(*valves)
+}
+
+func newList(valves map[string]Valve) {
+	newDict := map[string]NewDict{}
+	for name, valveData := range valves {
+		if name != "AA" && valveData.FlowRate > 0 {
+			queue := []Queue{Queue{Distance: 0, Position: name}}
+			visited := []string{name}
+			if len(queue) > 0 {
+				temp := queue[0]
+				queue = queue[1:]
+				for _, valve := range valves {
+					for _, neighbor := range valve.Tunnels {
+						if !(contains(visited, neighbor)) {
+							visited = append(visited, neighbor)
+							if valves[neighbor].FlowRate > 0 {
+								tunnel := map[string]Tunnels{}
+								tunnel[neighbor] = Tunnels{Name: neighbor, Distance: temp.Distance}
+								queue = append(queue, Queue{Distance: temp.Distance + 1, Position: neighbor})
+								newDict[valve.Name] = NewDict{Name: name, Tunnels: Tunnels{Name: neighbor, Distance: temp.Distance}}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	fmt.Println(newDict)
+}
+
+func toInt(n string) int {
+	out, _ := strconv.Atoi(n)
+	return out
+}
+func contains(s []string, str string) bool {
+	for _, v := range s {
+		if v == str {
+			return true
+		}
+	}
+	return false
+}
+
+type Valve struct {
+	Name     string
+	FlowRate int
+	Tunnels  []string
+}
+type NewDict struct {
+	Name    string
+	Tunnels Tunnels
+}
+type Tunnels struct {
+	Name     string
+	Distance int
+}
+
+type Queue struct {
+	Distance int
+	Position string
+}
