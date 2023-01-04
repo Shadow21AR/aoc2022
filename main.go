@@ -1,6 +1,6 @@
 package main
 
-import "aoc2k22/shadow/day20"
+import "aoc2k22/shadow/day21"
 
 func main() {
 	// day1.Day1()
@@ -21,6 +21,7 @@ func main() {
 	// day16.Day16()
 	// day17.Day17()
 	// day18.Day18()
-	// day19.Day19()
-	day20.Day20()
+	// day19.Day19() //pending
+	// day20.Day20()
+	day21.Day21()
 }
