@@ -22,5 +22,7 @@
 | [Day 16](https://adventofcode.com/2022/day/16) | ⭐ | ⭐ |
 | [Day 17](https://adventofcode.com/2022/day/17) | ⭐ | ⭐ |
 | [Day 18](https://adventofcode.com/2022/day/18) | ⭐ | ⭐ |
+| [Day 20](https://adventofcode.com/2022/day/20) | ⭐ | ⭐ |
+| [Day 21](https://adventofcode.com/2022/day/21) | ⭐ |   |
 <!--- advent_readme_stars table --->
 <!--- \033[H\033[2J when i need it later, best place to store xD--->
